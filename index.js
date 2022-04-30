@@ -7,12 +7,19 @@ function echo_value(element) {
     console.log(time + ";" + amount);
 }
 
-function download_invoice(element) {
-    element.querySelector('.receipt > a').click();
+function download_invoice(element, delay_in_seconds) {
+    setTimeout(
+        () => element.querySelector('.receipt > a').click(),
+        delay_in_seconds * 1000
+    );
 }
 
 history_elements = document.querySelectorAll('div .payment-history > ul > li');
 
 history_elements.forEach(e => echo_value(e));
 
-history_elements.download_invoice(e => echo_value(e));
+
+for (let i = 0; i< history_elements.length; i++) {
+    download_invoice(history_elements[i], i);
+}
+
